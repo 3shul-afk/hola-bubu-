@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff0f5">
+  <title>Bubu 💗</title>
+  <style>
+    :root {
+      --pink: #e98eae;
+      --deep-pink: #c65382;
+      --pale-pink: #fff0f5;
+      --lavender: #eee4f5;
+      --ink: #4b3446;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 12%, #f9dce8 0, transparent 25rem),
+        radial-gradient(circle at 90% 45%, #e9dcf5 0, transparent 28rem),
+        #fff9fb;
+      font-family: Georgia, "Times New Roman", serif;
+      overflow-x: hidden;
+    }
+    .hero {
+      min-height: 76vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 4rem 1.25rem;
+      position: relative;
+      isolation: isolate;
+    }
+    .hero::before, .hero::after {
+      content: "✿";
+      position: absolute;
+      z-index: -1;
+      color: #e7a1bd;
+      opacity: .45;
+      font-size: clamp(5rem, 15vw, 12rem);
+      animation: float 5s ease-in-out infinite;
+    }
+    .hero::before { top: 10%; left: 7%; transform: rotate(-18deg); }
+    .hero::after { content: "♡"; bottom: 7%; right: 9%; color: #bd8acb; animation-delay: -2s; }
+    .hero-inner { max-width: 800px; }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .28em;
+      color: var(--deep-pink);
+      font: 700 .75rem/1.5 Arial, sans-serif;
+    }
+    h1 {
+      margin: .7rem 0 1rem;
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      line-height: 1;
+      color: #b94e7b;
+      font-weight: normal;
+      text-shadow: 0 5px 0 #f8d8e5;
+    }
+    .subtitle { font-size: clamp(1rem, 2.7vw, 1.35rem); line-height: 1.8; }
+    .heart-divider { color: #d879a0; font-size: 1.5rem; letter-spacing: .5rem; margin: 1.5rem 0; }
+    .start {
+      display: inline-block;
+      margin-top: 1rem;
+      border: 1px solid #e9a0bc;
+      border-radius: 999px;
+      padding: .85rem 1.5rem;
+      background: #fff;
+      color: #a84470;
+      text-decoration: none;
+      box-shadow: 0 8px 24px #c653821c;
+      transition: transform .2s, background .2s;
+    }
+    .start:hover { transform: translateY(-3px); background: var(--pale-pink); }
+    .memories { width: min(900px, 100% - 2rem); margin: 0 auto; padding: 1rem 0 5rem; }
+    .section-heading { text-align: center; font-size: clamp(1.8rem, 5vw, 2.6rem); color: #b94e7b; font-weight: normal; margin: 1rem 0 .5rem; }
+    .section-note { text-align: center; color: #8c6b82; margin: 0 0 3rem; }
+    .memory {
+      margin: 0 auto 2.3rem;
+      width: min(680px, 100%);
+      position: relative;
+      padding: clamp(.7rem, 3vw, 1.3rem);
+      border: 1px solid #f1c6d8;
+      border-radius: 18px;
+      background: #ffffffd9;
+      box-shadow: 0 14px 40px #6d365514;
+    }
+    .memory::before {
+      content: "♡";
+      position: absolute;
+      top: -17px;
+      right: 20px;
+      color: #d779a0;
+      font-size: 2rem;
+      background: #fff9fb;
+      line-height: 1;
+      padding: 0 .3rem;
+    }
+    .memory img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 9px;
+    }
+    .memory.photo { background: #f7e8f3; border-color: #d9b5df; }
+    .memory.photo img { box-shadow: 0 0 0 5px #fff, 0 0 0 8px #e4c2e9; }
+    .memory-label {
+      text-align: center;
+      color: #b35c84;
+      font-size: .9rem;
+      margin: 1rem 0 .1rem;
+      letter-spacing: .06em;
+    }
+
+    .media-section { width: min(900px, 100% - 2rem); margin: 0 auto 4rem; }
+    .media-card { background: #ffffffdf; border: 1px solid #f1c6d8; border-radius: 18px; padding: clamp(1rem, 3vw, 1.5rem); margin: 1.2rem auto; box-shadow: 0 14px 40px #6d365514; }
+    .media-card h3 { color: #b94e7b; font-weight: normal; margin: 0 0 .6rem; font-size: 1.25rem; }
+    .media-card p { color: #8c6b82; line-height: 1.6; }
+    .media-card audio { width: 100%; margin-top: .5rem; }
+    .media-card video { display: block; width: 100%; max-height: 70vh; border-radius: 12px; background: #f7e8f3; margin-top: .6rem; }
+
+    .final-note {
+      text-align: center;
+      padding: 3rem 1rem 5rem;
+      color: #a94e78;
+    }
+    .final-note .big-heart { font-size: 3rem; animation: pulse 1.8s ease-in-out infinite; }
+    .final-note p { font-size: 1.2rem; line-height: 1.8; }
+    footer { text-align: center; padding: 1.5rem; color: #a68198; font-size: .85rem; }
+    .petal {
+      position: fixed; top: -20px; pointer-events: none; z-index: 10;
+      color: #e99ab9; animation: fall linear forwards; opacity: .8;
+    }
+    @keyframes float { 0%,100% { translate: 0 0; } 50% { translate: 0 -13px; } }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.13); } }
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">for my favorite person</div>
+      <h1>Happy 8th Month Anniversary, My Bubu 💗</h1>
+      <div class="heart-divider">♡ ✿ ♡</div>
+      <p class="subtitle">Eight months of love, laughter, and beautiful memories.<br>Every moment with you is special, my Bubu. 💗</p>
+      <a class="start" href="#memories">Open our memories ↓</a>
+    </div>
+  </header>
+
+  <main id="memories" class="memories">
+    <h2 class="section-heading">Our little love story</h2>
+    <p class="section-note">A few pages, a thousand feelings, and one very special you. 🌷</p>
+
+    <!-- The uploaded pages are shown as photos, so the original handwriting stays intact.
+         To change an image, replace its file in the images folder. -->
+    <figure class="memory letter">
+      <img src="memory-04.jpeg" alt="The first page of a handwritten love letter" loading="lazy">
+      <figcaption class="memory-label">A letter from my heart 💌</figcaption>
+    </figure>
+    <figure class="memory photo">
+      <img src="memory-01.jpeg" alt="A handmade scrapbook page with couple photographs" loading="lazy">
+      <figcaption class="memory-label">One of our favourite pages ♡</figcaption>
+    </figure>
+    <figure class="memory letter">
+      <img src="memory-05.jpeg" alt="A page of a handwritten love letter" loading="lazy">
+      <figcaption class="memory-label">Things I never want you to forget 💗</figcaption>
+    </figure>
+    <figure class="memory photo">
+      <img src="memory-02.jpeg" alt="A handmade scrapbook page decorated with hearts" loading="lazy">
+      <figcaption class="memory-label">Us, always 🌸</figcaption>
+    </figure>
+    <figure class="memory letter">
+      <img src="memory-06.jpeg" alt="Another page of a handwritten love letter" loading="lazy">
+      <figcaption class="memory-label">Memories I keep close 💌</figcaption>
+    </figure>
+    <figure class="memory photo">
+      <img src="memory-03.jpeg" alt="A purple and pink scrapbook page with couple photographs" loading="lazy">
+      <figcaption class="memory-label">A moment frozen in time ♡</figcaption>
+    </figure>
+    <figure class="memory letter">
+      <img src="memory-08.jpeg" alt="A handwritten list of romantic thoughts" loading="lazy">
+      <figcaption class="memory-label">Little things I love about you 🌷</figcaption>
+    </figure>
+    <figure class="memory photo">
+      <img src="memory-07.jpeg" alt="A scrapbook page decorated with an I love you design" loading="lazy">
+      <figcaption class="memory-label">I love you, boo boo 💗</figcaption>
+    </figure>
+    <figure class="memory letter">
+      <img src="memory-09.jpeg" alt="Continuation of a handwritten romantic note" loading="lazy">
+      <figcaption class="memory-label">And there's still more to say… 💌</figcaption>
+    </figure>
+    <figure class="memory letter">
+      <img src="memory-10.jpeg" alt="A final handwritten love note" loading="lazy">
+      <figcaption class="memory-label">One last little love note 💗</figcaption>
+    </figure>
+    <figure class="memory photo">
+      <img src="memory-11.jpeg" alt="A scrapbook page with a pink and purple design" loading="lazy">
+      <figcaption class="memory-label">Our scrapbook, our story ♡</figcaption>
+    </figure>
+  </main>
+
+
+  <section class="media-section" id="special-moments">
+    <h2 class="section-heading">Little Messages &amp; Our Video 💌</h2>
+    <p class="section-note">Tap play and enjoy these little surprises, my Bubu. 🎧💗</p>
+    <div class="media-card">
+      <h3>🎧 A little audio just for you</h3>
+      <p>Listen whenever you want a little reminder of us. 💕</p>
+      <audio controls preload="metadata">
+        <source src="bubu-audio-1.mp3" type="audio/mpeg">
+        Your browser does not support audio playback.
+      </audio>
+    </div>
+    <div class="media-card">
+      <h3>🎶 Another little sound from us</h3>
+      <p>One more special audio to keep close. 🌷</p>
+      <audio controls preload="metadata">
+        <source src="bubu-audio-2.mp3" type="audio/mpeg">
+        Your browser does not support audio playback.
+      </audio>
+    </div>
+    <div class="media-card">
+      <h3>🎬 Our special video</h3>
+      <p>A memory to watch again whenever you miss me. 💗</p>
+      <video controls playsinline preload="metadata">
+        <source src="our-special-video.mp4" type="video/mp4">
+        Your browser does not support video playback.
+      </video>
+    </div>
+  </section>
+
+  <section class="final-note">
+    <div class="big-heart">💗</div>
+    <p>In every lifetime, in every little universe…<br><strong>I'd still choose you, my Boo Boo.</strong></p>
+    <div class="heart-divider">♡ ✿ ♡</div>
+  </section>
+  <footer>made with love, just for you 🌸</footer>
+
+  <script>
+    // A few gentle falling hearts and petals.
+    const symbols = ["♡", "✿", "♥"];
+    function makePetal() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const petal = document.createElement("span");
+      petal.className = "petal";
+      petal.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.fontSize = (12 + Math.random() * 15) + "px";
+      const duration = 7 + Math.random() * 7;
+      petal.style.animationDuration = duration + "s";
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), duration * 1000);
+    }
+    setInterval(makePetal, 1100);
+  </script>
+</body>
+</html>
